@@ -33,9 +33,11 @@ async function run() {
     app.get('/allreview', async (req,res)=>{
       const result= await reviewsAllData.find().toArray()
       res.send(result)
-    })
+    }) 
     app.get('/cart', async (req,res)=>{
-      const result=await cardAllData.find().toArray()
+      const email=req.query.email;
+      const query={email:email}
+      const result=await cardAllData.find(query).toArray()
       res.send(result)
     })
     app.post('/carts', async (req,res)=>{
